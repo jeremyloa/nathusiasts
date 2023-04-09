@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+/* GLOBAL */
+
+*{
+    font-family:  'Lato', sans-serif;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+}
+
+::selection {
+    background: #f9c349;
+}
+
+body{
+    margin: 0;
+    background-color: #f8f7f3;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{
+    color: #ffb121;
+    text-decoration: underline;
+}
+
+a figure {
+	position: relative;
+}
+a figure::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	background: rgba(255,255,255,.2);
+	border-radius: 100%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+a figure:hover::before {
+	-webkit-animation: circle .75s;
+	animation: circle .75s;
+}
+@-webkit-keyframes circle {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+		opacity: 0;
+	}
+}
+@keyframes circle {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+		opacity: 0;
+	}
+}
+.selected{
+    color: #ffb121;
+}
+
+/* HEADER - NAVBAR */
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    align-items: center;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    margin-right: 40px;
+}
+
+nav a{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+nav a img{
+    max-height: 50px;
+}
+
+#mob-menu{
+    display: flex;
+    flex-direction: row;
+}
+#menu-icon{
+    display: none;
+}
+.mob-hid{
+    display: flex;
+}
+
+@media only screen and (max-width: 900px) {
+    header{
+        align-items: center;
+        flex-direction: column;
+        height: 80px;
+        margin: 0;
+        padding: 0;
+    }
+
+    #mob-menu{
+        justify-content: space-between;
+        width: 100vw;
+    }
+    #menu-icon{
+        display: flex;
+        margin-right: 50px;
+    }
+
+    nav{
+        align-items: center;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mob-hid{
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        width: 100vw;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* FOOTER */
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    height: 75px;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
