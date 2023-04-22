@@ -236,3 +236,23 @@ footer{
 #featured-fts{
     background-color: #f8f7f3;
 }
+
+.bg{
+    background-color: black;
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+.bg h1{
+    font-size: xx-large;
+    margin: 0;
+}
+
+#bg-login{
+    background-image: url('https://images.pexels.com/photos/2582818/pexels-photo-2582818.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-attachment: fixed;
+}
+
