@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/style.js"></script>
+    <script type="module" src="../js/firebase/firebase.js"></script>
+    <script type="module" src="../js/firebase/user.js"></script>
     <title>Nathusiasts - Nature Enthusiasts</title>
 </head>
 <header>
@@ -43,13 +45,30 @@
 </header>
 <body>
     <section class="featured bg" id="bg-login">
-        <h1>Login or Register to continue</h1>
+        <h1>Sign In or Register to continue</h1>
         <h4>Your personal hub for managing orders, tracking shipments, and updating your account information.</h4>
     </section>
-    <section class="featured" id="featured-com">
-        <h1>Recent Posts</h1>
+    <section class="featured" id="sec-login">
+        <div class="sec-child">
+            <h1>Register</h1>
+            <form class="form-main">
+                <br>
+                <input class="form-field-res" type="name" name="name" placeholder="Full Name" required id="reg_name">
+                <input class="form-field-res" type="email" name="email" placeholder="E-mail" required id="reg_mail">
+                <input class="form-field-res" type="password" name="password" placeholder="Password" required id="reg_pass">
+                <input class="form-submit-inv" type="submit" value="Register" id="reg_btn">
+            </form>
+        </div>
+        <div class="sec-child">
+            <h1>Sign In</h1>
+            <form class="form-main">
+                <br>
+                <input class="form-field-res" type="email" name="email" placeholder="E-mail" required id="log_mail">
+                <input class="form-field-res" type="password" name="password" placeholder="Password" required id="log_pass">
+                <input class="form-submit-inv" type="submit" value="Sign In" id="log_btn">
+            </form>
+        </div>
     </section>
-    
 </body>
 <footer>
     Copyright © 2023 Nathusiasts.
