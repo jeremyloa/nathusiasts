@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, getAuth,onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js'
-import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 
 const auth = getAuth()
 const db = getFirestore()
@@ -8,7 +8,7 @@ export var user = null
 onAuthStateChanged(auth, (authUser) => {
   if (authUser) {
     getDoc(doc(db, "MasterUser", authUser.uid))
-    .then((doc) => user = doc.data())
+    .then((doc) => user = {doc: doc.data(), id: doc.id})
   } else {
     user = null
   }
@@ -19,6 +19,18 @@ export async function auth_middleware(){
   if (await usr && usr.uid !== "") return true
   else return false
 }
+
+export var masterUserArray = []
+onSnapshot(collection(db, "MasterUser"), (ss)=>{
+  masterUserArray = []
+  ss.forEach((doc)=>{
+    masterUserArray.push({
+      id: doc.id,
+      ...doc.data()
+    })
+  })
+  console.log(masterUserArray)
+})
 
 const reg_btn = document.getElementById('reg_btn')
 if (reg_btn) {

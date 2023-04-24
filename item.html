@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../js/style.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/item.js"></script>
+    <script type="module" src="../js/index.js"></script>
+    <title>Nathusiasts - Rent Items</title>
+</head>
+<header>
+    <nav>
+        <div id="mob-menu">
+            <a href="index.html">
+                <figure>
+                    <img src="../assets/Nathusiasts-b.png"/>
+                </figure>
+            </a>
+            <a href="javascript:void(0);" id="menu-icon" onclick="mobMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <a href="store.html" class="mob-hid">
+            <h4>RENT</h4>
+        </a>
+        <a href="community.html" class="mob-hid">
+            <h4>COMMUNITY</h4>
+        </a>
+    </nav>
+
+    <nav>
+        <a href="about.html" class="mob-hid">
+            <h4>ABOUT US</h4>
+        </a>
+        <a href="contact.html" class="mob-hid">
+            <h4>CONTACT US</h4>
+        </a>
+        <a href="#" class="mob-hid" id="acc_redir">
+            <h4>MY ACCOUNT</h4>
+        </a>
+    </nav>
+</header>
+<body>
+    <div class="item-main">
+        <section class="item-lr">
+            <img id="item_pic">
+        </section>
+        <section class="item-lr">
+            <div>
+                Category: <b> <a href="#" id="item_cat">Category</a> </b>
+            </div>
+            <br>
+            <h1 id="item_name">Name</h1>
+            <br>
+            <h1 id="item_price">Price</h1>
+            <form>
+                <div>
+                    <label id="item_qty_label" for="item_qty">I want to rent  </label>
+                    <input id="item_qty" type="number" min="1" max="99" step="1" value="1" required>
+                    <input id="item_rent" class="form-submit-inv btn-yellow" type="submit" value="Rent">
+                </div>
+            </form>
+            <h4>Description</h4>
+            <p id="item_desc">
+                Desc
+            </p>
+        </section>
+    </div>
+    <div class="item-additional">
+        <section id="item_reviews" class="item-add-item" >
+            <h2>Review</h2>
+            <form id="item_input_review" class="item_input_comment">
+                <div>
+                    <label for="item_input_review_rating">Your Rating:</label>
+                    <input required type="radio" id="star1" name="item_input_review_rating" value="1" /><label for="star1" title="1 star"></label>
+                    <input type="radio" id="star2" name="item_input_review_rating" value="2" /><label for="star2" title="2 stars"></label>
+                    <input type="radio" id="star3" name="item_input_review_rating" value="3" /><label for="star3" title="3 stars"></label>
+                    <input type="radio" id="star4" name="item_input_review_rating" value="4" checked /><label for="star4" title="4 stars"></label>
+                    <input type="radio" id="star5" name="item_input_review_rating" value="5" /><label for="star5" title="5 stars"></label>
+                </div>
+                <textarea id="item_input_review_comment" class="item_input_review_comment" rows="3" placeholder="Your Review" required></textarea>
+                <button id="item_submit_review" type="submit" class="form-submit-inv btn-yellow">Submit Review</button>
+            </form>
+            <ul id="item_reviews_list" class="item_reviews_list"></ul>
+        </section>
+        <section id="item_related" class="item-add-item">
+            Related
+        </section>
+    </div>
+</body>
+<footer>
+    Copyright © 2023 Nathusiasts.
+</footer>
+</html>

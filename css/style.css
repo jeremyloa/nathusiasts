@@ -389,5 +389,244 @@ footer{
     color: #0a0b0c;
 }
 
+.item-main{
+    display: flex;
+    flex-direction: row;
+    background-color: #f8f7f3;
+    min-height: 50vh;
+    justify-content: space-evenly;
+    padding: 5vh 5vw 5vh 5vw
+}
+
+#item_pic{
+    width: 40vw;
+}
+
+.item-lr{
+    width: 40vw;
+    align-items: center;
+}
+
+@media only screen and (max-width: 700px) {
+    .item-main{
+        flex-direction: column;
+    }
+
+    #item_pic{
+        width: 100%;
+    }
+
+    .item-lr{
+        width: 100%;
+    }
+}
 
 
+
+#item_name{
+    margin: 0;
+    font-size: xx-large;
+    font-weight: 400;
+}
+
+#item_price{
+    margin: 0;
+}
+
+#item_qty_label{
+    font-size: 14pt;
+}
+
+#item_qty{
+    border: 0;
+    border-bottom: 2px solid rgba(10, 11, 12, 0.2);
+    outline: 0;
+    width: 40px;
+    font-size: 1.3rem;
+    color: #0a0b0c;
+    padding: 7px 0px;
+    margin: 5px 10px;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+#item_qty:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-color: rgba(10, 11, 12,1);
+    border-image-slice: 1;
+}
+
+.btn-yellow{
+    background-color: #f9c349;
+    font-size: medium;
+}
+
+.btn-yellow:hover{
+    background-color: #ffb121;
+}
+
+.btn-rep{
+    align-self: flex-start;
+}
+
+#item_rent{
+    width: 80px;
+}
+
+.item-additional{
+    display: flex;
+    flex-direction: column;
+}
+
+.item-add-item{
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#item_reviews{
+    background-color: white;
+}
+
+.item_input_comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70vw !important;
+}
+
+#item_input_review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+}
+
+#item_input_review label {
+    margin: 10px 0;
+}
+
+#item_input_review input[type="radio"] {
+    display: none;
+}
+
+#item_input_review input[type="radio"] + label:before {
+    content: "\2605";
+    color: gold;
+    margin-right: 5px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#item_input_review input[type="radio"]:checked + label:before {
+    content: "\2605";
+    color: gold;
+}
+
+#item_input_review input[type="radio"]:checked + label ~ input[type="radio"] + label:before {
+    content: "\2605";
+    color: gold;
+}
+
+#item_input_review #star1:checked ~ label[for="star1"] ~ input[type="radio"] + label:before {
+    content: "\2606";
+    color: #ccc;
+}
+
+#item_input_review #star2:checked ~ label[for="star2"] ~ input[type="radio"] + label:before {
+    content: "\2606";
+    color: #ccc;
+}
+
+#item_input_review #star3:checked ~ label[for="star3"] ~ input[type="radio"] + label:before {
+    content: "\2606";
+    color: #ccc;
+}
+
+#item_input_review #star4:checked ~ label[for="star4"] ~ input[type="radio"] + label:before {
+    content: "\2606";
+    color: #ccc;
+}
+
+.item_input_review_comment{
+    border: 1px solid rgba(10, 11, 12, 0.2);
+    border-radius: 0 !important;
+    outline: 0;
+    resize: none;
+    color: #0a0b0c;
+    padding: 7px 0px;
+    margin: 5px 10px;
+    background: transparent;
+    transition: border-color 0.2s;
+    width: 100% !important;
+}
+
+.item_input_review_comment:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 2px;
+    border-color: rgba(10, 11, 12,1);
+    border-image-slice: 1;
+}
+
+.item_reviews_list {
+    list-style: none;
+    padding: 0;
+    width: 70vw;
+}
+
+.item_review_container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    align-self: center;
+    margin: 20px 0 20px 0;
+}
+
+.item_review_user {
+    margin: 0 0 5px 0;
+}
+
+.item_review_date {
+    font-size: 12px;
+    color: #666;
+}
+
+.item_review_rating {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    font-size: 24px;
+    padding: 0;
+}
+
+.item_review_rating li.checked {
+    color: #ffcc00;
+}
+
+.item_review_rating li.star {
+    color: #ddd;
+}
+ 
+.item_review_comment {
+    margin: 0;
+}
+
+.item_review_reply_trigger{
+    font-size: small;
+    padding: 2px;
+}
+
+.item_review_replies{
+    margin-left: 30px;
+}
+
+#item_related{
+    background-color: #f8f7f3;
+}
