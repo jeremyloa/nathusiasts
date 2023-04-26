@@ -29,7 +29,7 @@ onSnapshot(collection(db, "MasterUser"), (ss)=>{
       ...doc.data()
     })
   })
-  console.log(masterUserArray)
+  // console.log(masterUserArray)
 })
 
 const reg_btn = document.getElementById('reg_btn')

@@ -1,12 +1,13 @@
 import { auth_middleware, user, masterUserArray } from "./user.js"
 import { getFirestore, doc, addDoc, getDoc, getDocs, query, collection, where, Timestamp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
-
+import {masterCategoryArray} from "./products.js"
 const db = getFirestore()
 const params = new URLSearchParams(window.location.search)
 const item_id = params.get('id')
 if (item_id){
     const item_pic = document.getElementById('item_pic')
     const item_cat = document.getElementById('item_cat')
+    const item_own = document.getElementById('item_own')
     const item_name = document.getElementById('item_name')
     const item_price = document.getElementById('item_price')
     const item_desc = document.getElementById('item_desc')
@@ -17,9 +18,10 @@ if (item_id){
         item_name.innerHTML = item.name
         item_price.innerHTML = 'Rp'+item.price
         item_desc.innerHTML = item.description
-        const item_cats = await getDoc(doc(db, "category", item.category))
-        item_cat.innerHTML = await item_cats.data().name
-        item_cat.setAttribute("href", '/store.html?id=' + item.category) 
+        item_cat.innerHTML = await masterCategoryArray.find(obj => obj.id === item.category).name; 
+        item_cat.setAttribute("href", '/marketplace.html?id=' + item.category) 
+        item_own.innerHTML = await masterUserArray.find(obj => obj.id === item.owner).name;
+
     }
 
     const item_input_review = document.getElementById('item_input_review')
