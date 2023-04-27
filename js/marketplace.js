@@ -5,6 +5,11 @@ const params = new URLSearchParams(window.location.search)
 const category_id = params.get('category')
 const search_query = params.get('query')
 
+const rent_btn = document.getElementById("rent_btn")
+rent_btn.addEventListener("click", (e)=>{
+    e.preventDefault()
+    window.location.assign("new-product.html")
+})
 const search_box = document.getElementById("search_box")
 const search_btn = document.getElementById("search_btn")
 if (search_btn) {

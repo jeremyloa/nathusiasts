@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="../js/style.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/user.js"></script>
+    <script type="module" src="../js/products.js"></script>
+    <script type="module" src="../js/index.js"></script>
+    <title>Nathusiasts - New Product</title>
+</head>
+<header>
+    <nav>
+        <div id="mob-menu">
+            <a href="index.html">
+                <figure>
+                    <img src="../assets/Nathusiasts-b.png"/>
+                </figure>
+            </a>
+            <a href="javascript:void(0);" id="menu-icon" onclick="mobMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <a href="marketplace.html" class="mob-hid">
+            <h4>MARKETPLACE</h4>
+        </a>
+        <a href="community.html" class="mob-hid">
+            <h4>COMMUNITY</h4>
+        </a>
+    </nav>
+
+    <nav>
+        <a href="about.html" class="mob-hid">
+            <h4>ABOUT US</h4>
+        </a>
+        <a href="contact.html" class="mob-hid">
+            <h4>CONTACT US</h4>
+        </a>
+        <a href="#" class="mob-hid" id="acc_redir">
+            <h4>MY ACCOUNT</h4>
+        </a>
+    </nav>
+</header>
+<body>
+    <section class="featured" id="bg-newproduct">
+        <h1>Insert New Item</h1>
+        <form class="form-main" id="new_product_form">
+            <select id="new_product_category" name="new_product_category" class="form-field-res" required>
+                <option value="select" disabled selected>Select a category</option>
+                <option value="camp-furnitures">Camp Furnitures</option>
+                <option value="camp-kitchen">Camp Kitchen</option>
+                <option value="footwears">Footwears</option>
+                <option value="jackets">Jackets</option>
+                <option value="sleeping-bags">Sleeping Bags</option>
+                <option value="tents-and-canopies">Tents and Canopies</option>
+                <option value="uncategorized">Uncategorized</option>
+            </select>
+            <input id="new_product_name" class="form-field-res" type="name" name="name" placeholder="Product Name" required>
+            <input id="new_product_price" class="form-field-res" type="number" name="price" placeholder="Product Price" required>
+            <input id="new_product_stock" class="form-field-res" type="number" name="stock" placeholder="Product Current Stock" required>
+            <div id="new_product_img_container">
+                <label for="new_product_img" class="form-field-res">Product picture</label>
+                <input type="file" id="new_product_img" name="new_product_img" class="form-field-res" accept="image/*">
+            </div>
+            <textarea id="new_product_desc" class="item_input_review_comment" rows="3" placeholder="Product Description" required></textarea>
+            <input class="form-submit-inv" type="submit" value="Insert Product" id="new_product_btn">
+        </form>
+    </section>
+</body>
+<footer>
+    Copyright © 2023 Nathusiasts.
+</footer>
+</html>

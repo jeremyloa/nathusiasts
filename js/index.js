@@ -11,3 +11,7 @@ if (acc_redir) {
 if (window.location.pathname === '/login-register.html') {
     if (await auth_middleware()) window.location.assign('account.html')
 }
+
+if (window.location.pathname === '/new-product.html') {
+    if (!(await auth_middleware())) window.location.assign('login-register.html')
+}
