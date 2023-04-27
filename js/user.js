@@ -15,9 +15,20 @@ onAuthStateChanged(auth, (authUser) => {
 });
 
 export async function auth_middleware(){
-  let usr = await auth.currentUser
-  if (await usr && usr.uid !== "") return true
-  else return false
+  // let usr = await auth.currentUser
+  // console.log(await usr)
+  // if (await usr && usr.uid !== "") return true
+  // else return false
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      unsubscribe();
+      if (user && user.uid !== "") {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    }, reject);
+  });
 }
 
 export var masterUserArray = []
