@@ -50,11 +50,12 @@ getMasterProductArray().then((data)=>{
             productContainer.appendChild(product_name)
         
             const product_cat = document.createElement("a")
-            product_cat.setAttribute("href", '/marketplace.html?id=' + doc.category) 
+            product_cat.setAttribute("href", '/marketplace.html?category=' + doc.category) 
             product_cat.innerHTML = masterCategoryArray.find(obj => obj.id === doc.category).name; 
             productContainer.appendChild(product_cat)
         
             const product_own = document.createElement("a")
+            product_own.setAttribute("href", '/owner-store.html?id=' + doc.owner) 
             product_own.innerHTML = masterUserArray.find(obj => obj.id === doc.owner).name;
             productContainer.appendChild(product_own)
         

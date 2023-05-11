@@ -19,8 +19,9 @@ if (item_id){
         item_price.innerHTML = 'Rp'+item.price
         item_desc.innerHTML = item.description
         item_cat.innerHTML = await masterCategoryArray.find(obj => obj.id === item.category).name; 
-        item_cat.setAttribute("href", '/marketplace.html?id=' + item.category) 
+        item_cat.setAttribute("href", '/marketplace.html?category=' + item.category) 
         item_own.innerHTML = await masterUserArray.find(obj => obj.id === item.owner).name;
+        item_own.setAttribute("href", '/owner-store.html?id=' + item.owner) 
 
     }
 

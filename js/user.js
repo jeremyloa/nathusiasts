@@ -31,6 +31,19 @@ export async function auth_middleware(){
   });
 }
 
+export async function check_curr_user(user_id){
+  return new Promise((resolve, reject)=>{
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      unsubscribe();
+      if (user && user.uid !== "" && user.uid == user_id) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    }, reject);
+  })
+}
+
 export var masterUserArray = []
 onSnapshot(collection(db, "MasterUser"), (ss)=>{
   masterUserArray = []
@@ -42,6 +55,22 @@ onSnapshot(collection(db, "MasterUser"), (ss)=>{
   })
   // console.log(masterUserArray)
 })
+
+export const getMatserUserArray = () => {
+    return new Promise((resolve, reject)=>{
+      const unsubscribe = onSnapshot(collection(db, "MasterUser"), (ss)=>{
+        const data = []
+        ss.forEach((doc)=>{
+          data.push({
+            id: doc.id,
+            ...doc.data()
+          })
+        })
+        unsubscribe()
+        resolve(data)
+      }, reject)
+    })
+}
 
 const reg_btn = document.getElementById('reg_btn')
 if (reg_btn) {
