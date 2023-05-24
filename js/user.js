@@ -14,6 +14,24 @@ onAuthStateChanged(auth, (authUser) => {
   }
 });
 
+export const getCurrUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubscribe = onAuthStateChanged(getAuth(), (usr)=>{
+        unsubscribe()
+        if (usr) {
+          getDoc(doc(db, "MasterUser", usr.uid))
+          .then((doc) => {
+            if (doc.exists()) {
+              const userDoc = {doc: doc.data(), id: doc.id}
+              resolve(userDoc)
+            } else reject(new Error("User not found"))
+          })
+          .catch(e=>reject(e))
+        } else reject(new Error("User not found"))
+      })
+    })
+}
+
 export async function auth_middleware(){
   // let usr = await auth.currentUser
   // console.log(await usr)

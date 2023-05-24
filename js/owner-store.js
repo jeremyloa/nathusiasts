@@ -5,9 +5,12 @@ const params = new URLSearchParams(window.location.search)
 const user_id = params.get('id')
 const category_id = params.get('category')
 const search_query = params.get('query')
+
+const title_owner = document.getElementById("title_owner")
 const own_name = document.getElementById("own_name")
 getMatserUserArray().then((data)=>{
     own_name.innerHTML = data.find(obj => obj.id === user_id).name
+    title_owner.innerHTML = "Nathusiasts - " + data.find(obj => obj.id === user_id).name
 })
 
 const rent_btn = document.getElementById("rent_btn")

@@ -670,6 +670,12 @@ footer{
     padding: 0
 }
 
+#cart_main{
+    display: flex;
+    flex-direction: row;
+    padding: 0
+}
+
 @media only screen and (max-width: 500px) {
     #filter-main{
         flex-direction: column;

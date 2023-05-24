@@ -8,21 +8,42 @@ if (item_id){
     const item_pic = document.getElementById('item_pic')
     const item_cat = document.getElementById('item_cat')
     const item_own = document.getElementById('item_own')
+    const item_stock = document.getElementById("item_stock")
     const item_name = document.getElementById('item_name')
     const item_price = document.getElementById('item_price')
     const item_desc = document.getElementById('item_desc')
+    const title_product = document.getElementById('title_product')
+    const item_id_input = document.getElementById('item_id')
+    const item_stock_input = document.getElementById('item_stock')
+    const item_qty = document.getElementById("item_qty")
+    const item_qty_label = document.getElementById("item_qty_label")
     const item_doc = await getDoc(doc(db, "item", item_id))
     if (item_doc.exists()) {
+        item_id_input.value = item_id
         const item = item_doc.data()
         item_pic.src = item.pic
         item_name.innerHTML = item.name
+        title_product.innerHTML = "Nathusiasts - " + item.name
         item_price.innerHTML = 'Rp'+item.price
         item_desc.innerHTML = item.description
         item_cat.innerHTML = await masterCategoryArray.find(obj => obj.id === item.category).name; 
         item_cat.setAttribute("href", '/marketplace.html?category=' + item.category) 
         item_own.innerHTML = await masterUserArray.find(obj => obj.id === item.owner).name;
         item_own.setAttribute("href", '/owner-store.html?id=' + item.owner) 
-
+        item_stock.innerHTML = item.stock
+        item_stock_input.value = item.stock
+        if (item.stock < 1) {
+            item_qty.style.display = "none"
+            item_rent.style.display = "none"
+            item_qty_label.innerHTML = "Product is out of stock."
+        } 
+        // else {
+        //     const item_rent = document.getElementById("item_rent")
+        //     item_rent.addEventListener("click", (e)=>{
+        //         e.preventDefault()
+        //         window.location.assign("buy.html?id="+item_id)
+        //     })
+        // }
     }
 
     const item_input_review = document.getElementById('item_input_review')

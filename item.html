@@ -9,8 +9,9 @@
     <script src="../js/style.js"></script>
     <script type="module" src="../js/firebase.js"></script>
     <script type="module" src="../js/item.js"></script>
+    <script type="module" src="../js/cart.js"></script>
     <script type="module" src="../js/index.js"></script>
-    <title>Nathusiasts - Buy or Sell Items</title>
+    <title id="title_product">Nathusiasts - Buy or Sell Items</title>
 </head>
 <header>
     <nav>
@@ -39,8 +40,11 @@
         <a href="contact.html" class="mob-hid">
             <h4>CONTACT US</h4>
         </a>
-        <a href="#" class="mob-hid" id="acc_redir">
+        <a href="account.html" class="mob-hid acc_redir">
             <h4>MY ACCOUNT</h4>
+        </a>
+        <a href="cart.html" class="mob-hid acc_redir">
+            <h4>MY CART</h4>
         </a>
     </nav>
 </header>
@@ -56,6 +60,9 @@
             <div>
                 Owner: <b> <a href="#" id="item_own">Owner</a> </b>
             </div>
+            <div>
+                Stock: <b> <a id="item_stock">Owner</a> </b> available
+            </div>
             <br>
             <h1 id="item_name">Name</h1>
             <br>
@@ -64,6 +71,8 @@
                 <div>
                     <label id="item_qty_label" for="item_qty">I want to buy  </label>
                     <input id="item_qty" type="number" min="1" max="99" step="1" value="1" required>
+                    <input id="item_id" type="hidden">
+                    <input id="item_stock" type="hidden">
                     <input id="item_rent" class="form-submit-inv btn-yellow" type="submit" value="Buy">
                 </div>
             </form>
