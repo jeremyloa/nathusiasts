@@ -53,10 +53,12 @@ if (item_rent && item_id && item_qty) {
 const cartList = document.getElementById("cart_main")
 if (cartList){
     getMasterCartArray().then((data)=>{
-        if (!data) {
+        if (!data && window.location.pathname === '/cart.html') {
             let purBtn = document.getElementById("purchaseBtn")
             purBtn.style.display = "none"
-        }
+        } else if (!data) {
+            window.location.assign('marketplace.html')
+        } 
         data.forEach(async (cart)=>{
             const product = await getDoc(doc(db, "item", cart.item))
             const cartContainer = document.createElement("li")
@@ -123,6 +125,11 @@ if (cartList){
                 } )
                 item_div_qty.appendChild(item_rent)
 
+                if (window.location.pathname === '/buy.html') {
+                    item_qty.disabled = true
+                    item_rent.style.display = 'none'
+                }
+
             cartContainer.appendChild(item_div_qty)
 
             const product_price = document.createElement("h1")
@@ -139,6 +146,15 @@ const purchaseBtn = document.getElementById("purchaseBtn")
 if (purchaseBtn) {
     purchaseBtn.addEventListener("click", e=>{
         e.preventDefault()
-        window.location.assign('buy.html')
+        if (window.location.pathname ==='/cart.html') {
+            window.location.assign('buy.html')
+        } else {
+            /*
+            TODO: 
+                get all active cart
+                    create a new transaction doc (form)
+                    update all active cart for the user to assign transaction ID of transaction doc
+            */
+        }
     })
 }

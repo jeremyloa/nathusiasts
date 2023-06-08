@@ -766,3 +766,18 @@ footer{
     font-size: 18px;
     font-weight: normal;
 }
+
+#buy_page_details h3, #buy_page_details h2{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+#buy_form{
+    width: 50vw;
+}
+
+#buy_address{
+    margin-left: 0;
+}
