@@ -41,7 +41,8 @@ if (item_rent && item_id && item_qty) {
                 user: usr,
                 item: item,
                 qty: Number(qty),
-                status: status
+                status: status,
+                transaction: ""
             }).then(()=>{
                 alert("Successfully add to cart")
             }).catch(e=>console.log(e))
@@ -52,6 +53,10 @@ if (item_rent && item_id && item_qty) {
 const cartList = document.getElementById("cart_main")
 if (cartList){
     getMasterCartArray().then((data)=>{
+        if (!data) {
+            let purBtn = document.getElementById("purchaseBtn")
+            purBtn.style.display = "none"
+        }
         data.forEach(async (cart)=>{
             const product = await getDoc(doc(db, "item", cart.item))
             const cartContainer = document.createElement("li")
@@ -108,7 +113,8 @@ if (cartList){
                             user: usr,
                             item: item,
                             qty: Number(qty),
-                            status: status
+                            status: status,
+                            transaction: ""
                         }).then(()=>{
                             alert("Successfully update cart")
                             location.reload()
@@ -126,5 +132,13 @@ if (cartList){
         
             cartList.appendChild(cartContainer)
         })
+    })
+}
+
+const purchaseBtn = document.getElementById("purchaseBtn")
+if (purchaseBtn) {
+    purchaseBtn.addEventListener("click", e=>{
+        e.preventDefault()
+        window.location.assign('buy.html')
     })
 }
