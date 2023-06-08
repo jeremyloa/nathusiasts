@@ -3,7 +3,7 @@ import { user, masterUserArray, getCurrUser } from "./user.js"
 import { masterCategoryArray } from './products.js'
 
 const db = getFirestore()
-
+var totalPrice = 0
 export const getMasterCartArray = () => {
     return new Promise((resolve, reject) => {
         getCurrUser()
@@ -135,8 +135,13 @@ if (cartList){
             const product_price = document.createElement("h1")
             product_price.classList.add("product_price")
             product_price.innerHTML = 'Rp'+String(product.data().price*cart.qty) 
+            totalPrice = totalPrice + (product.data().price*cart.qty)
             cartContainer.appendChild(product_price)
-        
+            
+            if (window.location.pathname === '/buy.html') {
+                const total_price = document.getElementById("total_price")
+                total_price.innerHTML = 'Rp'+String(totalPrice)
+            }
             cartList.appendChild(cartContainer)
         })
     })
@@ -155,6 +160,49 @@ if (purchaseBtn) {
                     create a new transaction doc (form)
                     update all active cart for the user to assign transaction ID of transaction doc
             */
+            const buy_name = document.getElementById("buy_name")
+            const buy_email = document.getElementById("buy_email")
+            const buy_tel = document.getElementById("buy_tel")
+            const buy_address = document.getElementById("buy_address")
+            if (!buy_name.value || !buy_email.value || !buy_address.value || !buy_tel.value) alert("All fields must be filled")
+            else if (buy_name.value.length  < 8 || buy_email.value.length  < 8 || buy_tel.value.length  < 8 || buy_address.value.length < 8) alert('Length of each fields should be at least 8 characters')
+            else {
+                // console.log({
+                //     user: user.id,
+                //     email: buy_email.value,
+                //     name: buy_name.value,
+                //     address: buy_address.value,
+                //     tel: buy_tel.value,
+                //     total: totalPrice+10000,
+                //     status: 0
+                // })
+                addDoc(collection(db, "transaction"), {
+                    user: user.id,
+                    email: buy_email.value,
+                    name: buy_name.value,
+                    address: buy_address.value,
+                    tel: buy_tel.value,
+                    total: Number(totalPrice+10000),
+                    status: 0
+                }).then((transactionDoc)=>{
+                    getMasterCartArray().then((data)=>{
+                        data.forEach((cart)=>{
+                            setDoc(doc(db, "cart", cart.id), {
+                                transaction: transactionDoc.id,
+                                status: 1,
+                                user: user.id,
+                                item: cart.item,
+                                qty: Number(cart.qty),
+                            }).then(()=>{
+    
+                            }).catch(e=>console.log(e))
+                        })
+                    }).then(()=>{
+                        alert("Purchase success.")
+                        window.location.assign('marketplace.html')
+                    })
+                }).catch(e=>console.log(e))
+            }
         }
     })
 }

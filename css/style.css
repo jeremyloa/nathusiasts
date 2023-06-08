@@ -673,6 +673,7 @@ footer{
 #cart_main{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding: 0
 }
 
@@ -774,10 +775,34 @@ footer{
     padding: 0;
     margin: 0;
 }
+
 #buy_form{
-    width: 50vw;
+    width: 30vw;
 }
 
 #buy_address{
     margin-left: 0;
+}
+
+#purchase_cart_main{
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 900px) {
+    #purchase_cart_main{
+        flex-direction: column;
+    }
+
+    #buy_form{
+        width: 80vw;
+    }
+}
+
+#bg-buy{
+    background-color: white;
+    min-height: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
