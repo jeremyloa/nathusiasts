@@ -16,13 +16,19 @@ export const getMasterCartArray = () => {
                     ...doc.data()
                     })
                 })
-                unsubscribe()
-                resolve(data)
+                if (data.length === 0) {
+                    unsubscribe(); 
+                    reject(new Error("No data found")); 
+                } else {
+                    unsubscribe(); 
+                    resolve(data); 
+                }
             }, reject)
         })
+        .catch(reject)
     })
 }
-
+  
 const item_qty = document.getElementById("item_qty")
 const item_id = document.getElementById("item_id")
 const item_stock = document.getElementById("item_stock")
@@ -53,12 +59,6 @@ if (item_rent && item_id && item_qty) {
 const cartList = document.getElementById("cart_main")
 if (cartList){
     getMasterCartArray().then((data)=>{
-        if (!data && window.location.pathname === '/cart.html') {
-            let purBtn = document.getElementById("purchaseBtn")
-            purBtn.style.display = "none"
-        } else if (!data) {
-            window.location.assign('marketplace.html')
-        } 
         data.forEach(async (cart)=>{
             const product = await getDoc(doc(db, "item", cart.item))
             const cartContainer = document.createElement("li")
@@ -144,6 +144,10 @@ if (cartList){
             }
             cartList.appendChild(cartContainer)
         })
+    }).catch(()=>{
+        console.log("catch")
+        alert("Your cart is empty!")
+        window.location.assign('marketplace.html')
     })
 }
 
@@ -154,12 +158,6 @@ if (purchaseBtn) {
         if (window.location.pathname ==='/cart.html') {
             window.location.assign('buy.html')
         } else {
-            /*
-            TODO: 
-                get all active cart
-                    create a new transaction doc (form)
-                    update all active cart for the user to assign transaction ID of transaction doc
-            */
             const buy_name = document.getElementById("buy_name")
             const buy_email = document.getElementById("buy_email")
             const buy_tel = document.getElementById("buy_tel")
