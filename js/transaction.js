@@ -1,7 +1,7 @@
-import { getFirestore, onSnapshot, collection, doc, where, getDoc, setDoc, query} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+import { getFirestore, onSnapshot, collection, doc, where, getDoc, setDoc, query, serverTimestamp} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 import { getTransactionCartArray } from "./cart.js"
 import { masterCategoryArray } from './products.js'
-import { user, masterUserArray, getCurrUser } from "./user.js"
+import { masterUserArray, getCurrUser } from "./user.js"
 
 const db = getFirestore()
 export const getMasterTransactionArray = () => {
@@ -81,7 +81,8 @@ if (transListSeller){
                                     address: tr.address,
                                     tel: tr.tel,
                                     total: tr.total,
-                                    status: 1
+                                    status: 1,
+                                    datetime: serverTimestamp()
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -101,7 +102,8 @@ if (transListSeller){
                                     address: tr.address,
                                     tel: tr.tel,
                                     total: tr.total,
-                                    status: 2
+                                    status: 2,
+                                    datetime: serverTimestamp()
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -121,7 +123,8 @@ if (transListSeller){
                                     address: tr.address,
                                     tel: tr.tel,
                                     total: tr.total,
-                                    status: 3
+                                    status: 3,
+                                    datetime: serverTimestamp()
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -141,7 +144,8 @@ if (transListSeller){
                                     address: tr.address,
                                     tel: tr.tel,
                                     total: tr.total,
-                                    status: 9
+                                    status: 9,
+                                    datetime: serverTimestamp()
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -153,7 +157,8 @@ if (transListSeller){
                         const trOneHeading = document.createElement("h3")
                         trOneHeading.className = "item_review_user"
                         let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Confirmed" : tr.status == 2 ? "Shipping" : tr.status == 3 ? "Finished" : "Cancelled"
-                        trOneHeading.innerHTML = "["+status+"]"+" - Invoice: "+tr.id
+                        let datetime = tr.datetime.toDate().toLocaleDateString() + ' ' + tr.datetime.toDate().toLocaleTimeString();
+                        trOneHeading.innerHTML = "["+status+"]"+" - Invoice: "+tr.id+" - "+datetime
                         trOneContainerDiv.appendChild(trOneHeading)
     
                         const trOneTransDiv = document.createElement("div")
@@ -274,7 +279,8 @@ if (transList){
                         const trOneHeading = document.createElement("h3")
                         trOneHeading.className = "item_review_user"
                         let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Confirmed" : tr.status == 2 ? "Shipping" : tr.status == 3 ? "Finished" : "Cancelled"
-                        trOneHeading.innerHTML = "["+status+"]"+" - Invoice: "+tr.id
+                        let datetime = tr.datetime.toDate().toLocaleDateString() + ' ' + tr.datetime.toDate().toLocaleTimeString();
+                        trOneHeading.innerHTML = "["+status+"]"+" - Invoice: "+tr.id+" - "+datetime
                         trOneContainerDiv.appendChild(trOneHeading)
     
                         const trOneTransDiv = document.createElement("div")

@@ -1,4 +1,4 @@
-import { getFirestore, onSnapshot, collection, doc, addDoc, where, and, getDoc, setDoc, query} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+import { getFirestore, onSnapshot, collection, doc, addDoc, where, and, getDoc, setDoc, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 import { user, masterUserArray, getCurrUser } from "./user.js"
 import { masterCategoryArray } from './products.js'
 
@@ -43,7 +43,7 @@ export const getTransactionCartArray = (transactionID) => {
                 })
                 unsubscribe(); 
                 resolve(data); 
-                
+
             }, reject)
         })
         .catch(reject)
@@ -202,7 +202,8 @@ if (purchaseBtn) {
                     address: buy_address.value,
                     tel: buy_tel.value,
                     total: Number(totalPrice+10000),
-                    status: 0
+                    status: 0,
+                    datetime: serverTimestamp()
                 }).then((transactionDoc)=>{
                     getMasterCartArray().then((data)=>{
                         data.forEach((cart)=>{
