@@ -63,9 +63,96 @@ if (transListSeller){
                 trOneContainer.className = "trContainerOutline"
                     const trOneContainerDiv = document.createElement("div")
                     trOneContainerDiv.className = "item_review_container_two"
+                        const buttonsDiv = document.createElement("div")
+                        buttonsDiv.className = "buttons_div"
+                            const statusLabel = document.createElement("label")
+                            statusLabel.innerHTML = "Change Status: "
+                            buttonsDiv.appendChild(statusLabel)
+
+                            const confBtn = document.createElement("input")
+                            confBtn.className = "form-submit-inv"
+                            confBtn.type = "submit"
+                            confBtn.value = "Confirmed"
+                            confBtn.addEventListener("click", ()=>{
+                                setDoc(doc(db, "transaction", tr.id), {
+                                    user: tr.user,
+                                    email: tr.email,
+                                    name: tr.name,
+                                    address: tr.address,
+                                    tel: tr.tel,
+                                    total: tr.total,
+                                    status: 1
+                                }).then(()=>{
+                                    alert("Successfully update status")
+                                    location.reload()
+                                }).catch(e=>console.log(e))
+                            })
+                            buttonsDiv.appendChild(confBtn)
+
+                            const deliveryBtn = document.createElement("input")
+                            deliveryBtn.className = "form-submit-inv"
+                            deliveryBtn.type = "submit"
+                            deliveryBtn.value = "Shipping"
+                            deliveryBtn.addEventListener("click", ()=>{
+                                setDoc(doc(db, "transaction", tr.id), {
+                                    user: tr.user,
+                                    email: tr.email,
+                                    name: tr.name,
+                                    address: tr.address,
+                                    tel: tr.tel,
+                                    total: tr.total,
+                                    status: 2
+                                }).then(()=>{
+                                    alert("Successfully update status")
+                                    location.reload()
+                                }).catch(e=>console.log(e))
+                            })
+                            buttonsDiv.appendChild(deliveryBtn)
+                        
+                            const finishBtn = document.createElement("input")
+                            finishBtn.className = "form-submit-inv"
+                            finishBtn.type = "submit"
+                            finishBtn.value = "Finished"
+                            finishBtn.addEventListener("click", ()=>{
+                                setDoc(doc(db, "transaction", tr.id), {
+                                    user: tr.user,
+                                    email: tr.email,
+                                    name: tr.name,
+                                    address: tr.address,
+                                    tel: tr.tel,
+                                    total: tr.total,
+                                    status: 3
+                                }).then(()=>{
+                                    alert("Successfully update status")
+                                    location.reload()
+                                }).catch(e=>console.log(e))
+                            })
+                            buttonsDiv.appendChild(finishBtn)
+
+                            const cancelBtn = document.createElement("input")
+                            cancelBtn.className = "form-submit-inv"
+                            cancelBtn.type = "submit"
+                            cancelBtn.value = "Cancelled"
+                            cancelBtn.addEventListener("click", ()=>{
+                                setDoc(doc(db, "transaction", tr.id), {
+                                    user: tr.user,
+                                    email: tr.email,
+                                    name: tr.name,
+                                    address: tr.address,
+                                    tel: tr.tel,
+                                    total: tr.total,
+                                    status: 9
+                                }).then(()=>{
+                                    alert("Successfully update status")
+                                    location.reload()
+                                }).catch(e=>console.log(e))
+                            })
+                            buttonsDiv.appendChild(cancelBtn)
+                        trOneContainerDiv.appendChild(buttonsDiv)
+                        
                         const trOneHeading = document.createElement("h3")
                         trOneHeading.className = "item_review_user"
-                        let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Shipping" : "Finished" 
+                        let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Confirmed" : tr.status == 2 ? "Shipping" : tr.status == 3 ? "Finished" : "Cancelled"
                         trOneHeading.innerHTML = "["+status+"]"+" - Invoice: "+tr.id
                         trOneContainerDiv.appendChild(trOneHeading)
     
@@ -186,7 +273,7 @@ if (transList){
                     trOneContainerDiv.className = "item_review_container_two"
                         const trOneHeading = document.createElement("h3")
                         trOneHeading.className = "item_review_user"
-                        let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Shipping" : "Finished" 
+                        let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Confirmed" : tr.status == 2 ? "Shipping" : tr.status == 3 ? "Finished" : "Cancelled"
                         trOneHeading.innerHTML = "["+status+"]"+" - Invoice: "+tr.id
                         trOneContainerDiv.appendChild(trOneHeading)
     
@@ -282,9 +369,9 @@ if (transList){
                             trProducts.appendChild(cartContainer)
                         })
                     }).catch(()=>{
-                        console.log("catch")
-                        alert("Your cart is empty!")
-                        window.location.assign('marketplace.html')
+                        // console.log("catch")
+                        // alert("Your cart is empty!")
+                        // window.location.assign('marketplace.html')
                     })
     
                     trOneContainer.appendChild(trProducts)
