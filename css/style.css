@@ -286,6 +286,13 @@ footer{
     background-color: white;
     flex-direction: row;
     justify-content: space-between;
+    justify-content: space-between;
+}
+
+#sec-tr{
+    background-color: white;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .sec-child{
@@ -296,6 +303,9 @@ footer{
 
 @media only screen and (max-width: 900px) {
     #sec-login{
+        flex-direction: column;
+    }
+    #sec-tr{
         flex-direction: column;
     }
     .sec-child{
@@ -610,6 +620,12 @@ footer{
     align-self: center;
 }
 
+.item_review_container_two {
+    /* border: 1px solid #ccc; */
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    align-self: center;
+}
 .item_review_user {
     margin: 0 0 5px 0;
 }
@@ -805,4 +821,29 @@ footer{
     height: 100vh;
     display: flex;
     justify-content: center;
+}
+
+#tr_main{
+
+}
+
+.trans_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.trans_div div h3, .trans_div div h4, .trans_div div p{
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+}
+
+.trans_div_right{
+    text-align: right;
+}
+
+.trContainerOutline{
+    border: 1px solid #ccc;
+    padding: 10px;
+    align-self: center;
 }

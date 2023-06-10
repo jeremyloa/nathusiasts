@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../js/style.js"></script>
     <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/transaction.js"></script>
     <script type="module" src="../js/user.js"></script>
     <script type="module" src="../js/index.js"></script>
     <title>Nathusiasts - Account</title>
@@ -33,17 +34,15 @@
     </nav>
 
     <nav>
-        <a href="about.html" class="mob-hid">
-            <h4>ABOUT US</h4>
-        </a>
-        <a href="contact.html" class="mob-hid">
-            <h4>CONTACT US</h4>
-        </a>
+        
         <a href="account.html" class="mob-hid acc_redir">
             <h4>MY ACCOUNT</h4>
         </a>
         <a href="cart.html" class="mob-hid acc_redir">
             <h4>MY CART</h4>
+        </a>
+        <a href="#" class="mob-hid acc_redir" id="logout_btn">
+            <h4>SIGN OUT</h4>
         </a>
     </nav>
 </header>
@@ -52,8 +51,10 @@
         <h1>Account</h1>
         <h4>Your personal hub for managing orders, tracking shipments, and updating your account information.</h4>
     </section>
-    <section class="featured" id="sec-login">
-        <input class="form-submit-inv" type="submit" value="Sign Out" id="logout_btn">
+    <section class="featured" id="sec-tr">
+        <ul class="item_reviews_list" id="tr_main">
+            
+        </ul>
     </section>
 </body>
 <footer>
