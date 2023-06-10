@@ -246,6 +246,12 @@ footer{
     min-height: 50vh;
 }
 
+.featured-new{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #featured-rent{
     background-color: #f8f7f3;
 }
@@ -289,9 +295,9 @@ footer{
     justify-content: space-between;
 }
 
-#sec-tr{
+.sec-tr{
     background-color: white;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -469,6 +475,19 @@ footer{
 }
 
 #item_qty{
+    border: 0;
+    border-bottom: 2px solid rgba(10, 11, 12, 0.2);
+    outline: 0;
+    width: 40px;
+    font-size: 1.3rem;
+    color: #0a0b0c;
+    padding: 7px 0px;
+    margin: 5px 10px;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.item_qty{
     border: 0;
     border-bottom: 2px solid rgba(10, 11, 12, 0.2);
     outline: 0;
@@ -821,10 +840,6 @@ footer{
     height: 100vh;
     display: flex;
     justify-content: center;
-}
-
-#tr_main{
-
 }
 
 .trans_div{

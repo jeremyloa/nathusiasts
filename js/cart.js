@@ -33,7 +33,7 @@ export const getTransactionCartArray = (transactionID) => {
     return new Promise((resolve, reject) => {
         getCurrUser()
         .then((usr)=>{
-            const unsubscribe = onSnapshot(query(collection(db, "cart"), and(where("user", "==", usr.id), where("transaction", "==", transactionID))), (ss) => {
+            const unsubscribe = onSnapshot(query(collection(db, "cart"), where("transaction", "==", transactionID)), (ss) => {
                 const data = []
                 ss.forEach((doc) => {
                     data.push({
@@ -41,13 +41,9 @@ export const getTransactionCartArray = (transactionID) => {
                     ...doc.data()
                     })
                 })
-                if (data.length === 0) {
-                    unsubscribe(); 
-                    reject(new Error("No data found")); 
-                } else {
-                    unsubscribe(); 
-                    resolve(data); 
-                }
+                unsubscribe(); 
+                resolve(data); 
+                
             }, reject)
         })
         .catch(reject)
