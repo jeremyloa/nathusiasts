@@ -34,3 +34,9 @@ if (window.location.pathname === '/cart.html') {
         if (!isAuth) window.location.assign('login-register.html')
     })
 }
+
+if (window.location.pathname === '/buy.html') {
+    auth_middleware().then(isAuth => {
+        if (!isAuth) window.location.assign('login-register.html')
+    })
+}

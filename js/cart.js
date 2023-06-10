@@ -1,9 +1,9 @@
-import { getFirestore, onSnapshot, collection, doc, addDoc, where, and, getDoc, setDoc, query} from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
+import { getFirestore, onSnapshot, collection, doc, addDoc, where, and, getDoc, setDoc, query, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js'
 import { user, masterUserArray, getCurrUser } from "./user.js"
 import { masterCategoryArray } from './products.js'
 
 const db = getFirestore()
-
+var totalPrice = 0
 export const getMasterCartArray = () => {
     return new Promise((resolve, reject) => {
         getCurrUser()
@@ -16,10 +16,37 @@ export const getMasterCartArray = () => {
                     ...doc.data()
                     })
                 })
-                unsubscribe()
-                resolve(data)
+                if (data.length === 0) {
+                    unsubscribe(); 
+                    reject(new Error("No data found")); 
+                } else {
+                    unsubscribe(); 
+                    resolve(data); 
+                }
             }, reject)
         })
+        .catch(reject)
+    })
+}
+
+export const getTransactionCartArray = (transactionID) => {
+    return new Promise((resolve, reject) => {
+        getCurrUser()
+        .then((usr)=>{
+            const unsubscribe = onSnapshot(query(collection(db, "cart"), where("transaction", "==", transactionID)), (ss) => {
+                const data = []
+                ss.forEach((doc) => {
+                    data.push({
+                    id: doc.id,
+                    ...doc.data()
+                    })
+                })
+                unsubscribe(); 
+                resolve(data); 
+
+            }, reject)
+        })
+        .catch(reject)
     })
 }
 
@@ -41,7 +68,8 @@ if (item_rent && item_id && item_qty) {
                 user: usr,
                 item: item,
                 qty: Number(qty),
-                status: status
+                status: status,
+                transaction: ""
             }).then(()=>{
                 alert("Successfully add to cart")
             }).catch(e=>console.log(e))
@@ -108,7 +136,8 @@ if (cartList){
                             user: usr,
                             item: item,
                             qty: Number(qty),
-                            status: status
+                            status: status,
+                            transaction: ""
                         }).then(()=>{
                             alert("Successfully update cart")
                             location.reload()
@@ -117,14 +146,83 @@ if (cartList){
                 } )
                 item_div_qty.appendChild(item_rent)
 
+                if (window.location.pathname === '/buy.html') {
+                    item_qty.disabled = true
+                    item_rent.style.display = 'none'
+                }
+
             cartContainer.appendChild(item_div_qty)
 
             const product_price = document.createElement("h1")
             product_price.classList.add("product_price")
             product_price.innerHTML = 'Rp'+String(product.data().price*cart.qty) 
+            totalPrice = totalPrice + (product.data().price*cart.qty)
             cartContainer.appendChild(product_price)
-        
+            
+            if (window.location.pathname === '/buy.html') {
+                const total_price = document.getElementById("total_price")
+                total_price.innerHTML = 'Rp'+String(totalPrice)
+            }
             cartList.appendChild(cartContainer)
         })
+    }).catch(()=>{
+        console.log("catch")
+        alert("Your cart is empty!")
+        window.location.assign('marketplace.html')
+    })
+}
+
+const purchaseBtn = document.getElementById("purchaseBtn")
+if (purchaseBtn) {
+    purchaseBtn.addEventListener("click", e=>{
+        e.preventDefault()
+        if (window.location.pathname ==='/cart.html') {
+            window.location.assign('buy.html')
+        } else {
+            const buy_name = document.getElementById("buy_name")
+            const buy_email = document.getElementById("buy_email")
+            const buy_tel = document.getElementById("buy_tel")
+            const buy_address = document.getElementById("buy_address")
+            if (!buy_name.value || !buy_email.value || !buy_address.value || !buy_tel.value) alert("All fields must be filled")
+            else if (buy_name.value.length  < 8 || buy_email.value.length  < 8 || buy_tel.value.length  < 8 || buy_address.value.length < 8) alert('Length of each fields should be at least 8 characters')
+            else {
+                // console.log({
+                //     user: user.id,
+                //     email: buy_email.value,
+                //     name: buy_name.value,
+                //     address: buy_address.value,
+                //     tel: buy_tel.value,
+                //     total: totalPrice+10000,
+                //     status: 0
+                // })
+                addDoc(collection(db, "transaction"), {
+                    user: user.id,
+                    email: buy_email.value,
+                    name: buy_name.value,
+                    address: buy_address.value,
+                    tel: buy_tel.value,
+                    total: Number(totalPrice+10000),
+                    status: 0,
+                    datetime: serverTimestamp()
+                }).then((transactionDoc)=>{
+                    getMasterCartArray().then((data)=>{
+                        data.forEach((cart)=>{
+                            setDoc(doc(db, "cart", cart.id), {
+                                transaction: transactionDoc.id,
+                                status: 1,
+                                user: user.id,
+                                item: cart.item,
+                                qty: Number(cart.qty),
+                            }).then(()=>{
+    
+                            }).catch(e=>console.log(e))
+                        })
+                    }).then(()=>{
+                        alert("Purchase success.")
+                        window.location.assign('marketplace.html')
+                    })
+                }).catch(e=>console.log(e))
+            }
+        }
     })
 }

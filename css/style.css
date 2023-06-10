@@ -246,6 +246,12 @@ footer{
     min-height: 50vh;
 }
 
+.featured-new{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #featured-rent{
     background-color: #f8f7f3;
 }
@@ -286,6 +292,13 @@ footer{
     background-color: white;
     flex-direction: row;
     justify-content: space-between;
+    justify-content: space-between;
+}
+
+.sec-tr{
+    background-color: white;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sec-child{
@@ -296,6 +309,9 @@ footer{
 
 @media only screen and (max-width: 900px) {
     #sec-login{
+        flex-direction: column;
+    }
+    #sec-tr{
         flex-direction: column;
     }
     .sec-child{
@@ -471,6 +487,19 @@ footer{
     transition: border-color 0.2s;
 }
 
+.item_qty{
+    border: 0;
+    border-bottom: 2px solid rgba(10, 11, 12, 0.2);
+    outline: 0;
+    width: 40px;
+    font-size: 1.3rem;
+    color: #0a0b0c;
+    padding: 7px 0px;
+    margin: 5px 10px;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
 #item_qty:focus {
     padding-bottom: 6px;
     font-weight: 700;
@@ -610,6 +639,12 @@ footer{
     align-self: center;
 }
 
+.item_review_container_two {
+    /* border: 1px solid #ccc; */
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    align-self: center;
+}
 .item_review_user {
     margin: 0 0 5px 0;
 }
@@ -673,6 +708,7 @@ footer{
 #cart_main{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding: 0
 }
 
@@ -766,3 +802,86 @@ footer{
     font-size: 18px;
     font-weight: normal;
 }
+
+#buy_page_details h3, #buy_page_details h2{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+#buy_form{
+    width: 30vw;
+}
+
+#buy_address{
+    margin-left: 0;
+}
+
+#purchase_cart_main{
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons_div{
+    margin-bottom: 10pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trans_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 900px) {
+    #purchase_cart_main{
+        flex-direction: column;
+    }
+
+    #buy_form{
+        width: 80vw;
+    }
+
+    .buttons_div{
+        margin-bottom: 10pt;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .trans_div{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+#bg-buy{
+    background-color: white;
+    min-height: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.trans_div div h3, .trans_div div h4, .trans_div div p{
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+}
+
+.trans_div_right{
+    text-align: right;
+}
+
+.trContainerOutline{
+    border: 1px solid #ccc;
+    padding: 10px;
+    align-self: center;
+}
+
