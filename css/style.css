@@ -885,3 +885,28 @@ footer{
     align-self: center;
 }
 
+.wrap_trans_review{
+    display: flex;
+    flex-direction: row;
+}
+
+.star_trans{
+    border: none;
+    background: none;
+    font-size: 24pt;
+}
+
+.star_trans:hover{
+    color: gold;
+}
+
+.star_filled{
+    border: none;
+    background: none;
+    font-size: 24pt;
+    color: gold;
+}
+
+.star_filled:hover{
+    color: black;
+}

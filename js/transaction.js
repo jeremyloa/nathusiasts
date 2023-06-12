@@ -82,7 +82,9 @@ if (transListSeller){
                                     tel: tr.tel,
                                     total: tr.total,
                                     status: 1,
-                                    datetime: serverTimestamp()
+                                    datetime: serverTimestamp(),
+                                    userrate: tr.userrate,
+                                    sellerrate: tr.sellerrate
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -103,7 +105,9 @@ if (transListSeller){
                                     tel: tr.tel,
                                     total: tr.total,
                                     status: 2,
-                                    datetime: serverTimestamp()
+                                    datetime: serverTimestamp(),
+                                    userrate: tr.userrate,
+                                    sellerrate: tr.sellerrate
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -124,7 +128,9 @@ if (transListSeller){
                                     tel: tr.tel,
                                     total: tr.total,
                                     status: 3,
-                                    datetime: serverTimestamp()
+                                    datetime: serverTimestamp(),
+                                    userrate: tr.userrate,
+                                    sellerrate: tr.sellerrate
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -145,7 +151,9 @@ if (transListSeller){
                                     tel: tr.tel,
                                     total: tr.total,
                                     status: 9,
-                                    datetime: serverTimestamp()
+                                    datetime: serverTimestamp(),
+                                    userrate: tr.userrate,
+                                    sellerrate: tr.sellerrate
                                 }).then(()=>{
                                     alert("Successfully update status")
                                     location.reload()
@@ -274,8 +282,351 @@ if (transList){
             if (tr.id!="base") {
                 const trOneContainer = document.createElement("li")
                 trOneContainer.className = "trContainerOutline"
-                    const trOneContainerDiv = document.createElement("div")
+                const trOneContainerDiv = document.createElement("div")
                     trOneContainerDiv.className = "item_review_container_two"
+                        const buttonsDiv = document.createElement("div")
+                        buttonsDiv.className = "buttons_div"
+                        const statusLabel = document.createElement("label")
+                            statusLabel.innerHTML = "Rate this transaction: "
+                            buttonsDiv.appendChild(statusLabel)
+                            
+                            const buttonOne = document.createElement("button")
+                            if (tr.userrate >=1 ) {
+                                buttonOne.innerHTML = "&starf;"
+                                buttonOne.classList = "star_filled"
+                            } else {
+                                buttonOne.innerHTML = "&star;"
+                                buttonOne.classList = "star_trans"
+                            }
+                            buttonsDiv.appendChild(buttonOne)
+
+                            const buttonTwo = document.createElement("button")
+                            if (tr.userrate >=2 ) {
+                                buttonTwo.innerHTML = "&starf;"
+                                buttonTwo.classList = "star_filled"
+                            } else {
+                                buttonTwo.innerHTML = "&star;"
+                                buttonTwo.classList = "star_trans"
+                            }
+                            buttonsDiv.appendChild(buttonTwo)
+
+                            const buttonThree = document.createElement("button")
+                            if (tr.userrate >=3 ) {
+                                buttonThree.innerHTML = "&starf;"
+                                buttonThree.classList = "star_filled"
+                            } else {
+                                buttonThree.innerHTML = "&star;"
+                                buttonThree.classList = "star_trans"
+                            }
+                            buttonsDiv.appendChild(buttonThree)
+
+                            const buttonFour = document.createElement("button")
+                            if (tr.userrate >=4 ) {
+                                buttonFour.innerHTML = "&starf;"
+                                buttonFour.classList = "star_filled"
+                            } else {
+                                buttonFour.innerHTML = "&star;"
+                                buttonFour.classList = "star_trans"
+                            }
+                            buttonsDiv.appendChild(buttonFour)
+
+                            const buttonFive = document.createElement("button")
+                            if (tr.userrate >=5 ) {
+                                buttonFive.innerHTML = "&starf;"
+                                buttonFive.classList = "star_filled"
+                            } else {
+                                buttonFive.innerHTML = "&star;"
+                                buttonFive.classList = "star_trans"
+                            }
+                            buttonsDiv.appendChild(buttonFive)
+
+                            buttonOne.addEventListener("click", ()=>{
+                                if (buttonOne.classList == "star_trans") {
+                                    buttonOne.innerHTML = "&starf;"
+                                    buttonOne.classList = "star_filled"
+                                    buttonTwo.innerHTML = "&star;"
+                                    buttonTwo.classList = "star_trans"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 1,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+
+                                } else if (tr.userrate == 1) {
+                                    buttonOne.innerHTML = "&star;"
+                                    buttonOne.classList = "star_trans"
+                                    buttonTwo.innerHTML = "&star;"
+                                    buttonTwo.classList = "star_trans"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 0,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+                                }
+                            })
+
+                            
+                            buttonTwo.addEventListener("click", ()=>{
+                                if (buttonTwo.classList == "star_trans") {
+                                    buttonTwo.innerHTML = "&starf;"
+                                    buttonTwo.classList = "star_filled"
+                                    buttonOne.innerHTML = "&starf;"
+                                    buttonOne.classList = "star_filled"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 2,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+
+                                } else if (tr.userrate == 2){
+                                    buttonOne.innerHTML = "&star;"
+                                    buttonOne.classList = "star_trans"
+                                    buttonTwo.innerHTML = "&star;"
+                                    buttonTwo.classList = "star_trans"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 0,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+                                }
+                            })
+
+                            buttonThree.addEventListener("click", ()=>{
+                                if (buttonTwo.classList == "star_trans") {
+                                    buttonTwo.innerHTML = "&starf;"
+                                    buttonTwo.classList = "star_filled"
+                                    buttonOne.innerHTML = "&starf;"
+                                    buttonOne.classList = "star_filled"
+                                    buttonThree.innerHTML = "&starf;"
+                                    buttonThree.classList = "star_filled"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 3,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+
+                                } else if (tr.userrate == 3){
+                                    buttonOne.innerHTML = "&star;"
+                                    buttonOne.classList = "star_trans"
+                                    buttonTwo.innerHTML = "&star;"
+                                    buttonTwo.classList = "star_trans"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 0,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+                                }
+                            })
+
+                            buttonFour.addEventListener("click", ()=>{
+                                if (buttonTwo.classList == "star_trans") {
+                                    buttonTwo.innerHTML = "&starf;"
+                                    buttonTwo.classList = "star_filled"
+                                    buttonOne.innerHTML = "&starf;"
+                                    buttonOne.classList = "star_filled"
+                                    buttonThree.innerHTML = "&starf;"
+                                    buttonThree.classList = "star_filled"
+                                    buttonFour.innerHTML = "&starf;"
+                                    buttonFour.classList = "star_filled"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 4,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+
+                                } else if (tr.userrate == 4){
+                                    buttonOne.innerHTML = "&star;"
+                                    buttonOne.classList = "star_trans"
+                                    buttonTwo.innerHTML = "&star;"
+                                    buttonTwo.classList = "star_trans"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 0,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+                                }
+                            })
+
+                            buttonFive.addEventListener("click", ()=>{
+                                if (buttonTwo.classList == "star_trans") {
+                                    buttonTwo.innerHTML = "&starf;"
+                                    buttonTwo.classList = "star_filled"
+                                    buttonOne.innerHTML = "&starf;"
+                                    buttonOne.classList = "star_filled"
+                                    buttonThree.innerHTML = "&starf;"
+                                    buttonThree.classList = "star_filled"
+                                    buttonFour.innerHTML = "&starf;"
+                                    buttonFour.classList = "star_filled"
+                                    buttonFive.innerHTML = "&starf;"
+                                    buttonFive.classList = "star_filled"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 5,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+
+                                } else if (tr.userrate == 5){
+                                    buttonOne.innerHTML = "&star;"
+                                    buttonOne.classList = "star_trans"
+                                    buttonTwo.innerHTML = "&star;"
+                                    buttonTwo.classList = "star_trans"
+                                    buttonThree.innerHTML = "&star;"
+                                    buttonThree.classList = "star_trans"
+                                    buttonFour.innerHTML = "&star;"
+                                    buttonFour.classList = "star_trans"
+                                    buttonFive.innerHTML = "&star;"
+                                    buttonFive.classList = "star_trans"
+                                    setDoc(doc(db, "transaction", tr.id), {
+                                        user: tr.user,
+                                        email: tr.email,
+                                        name: tr.name,
+                                        address: tr.address,
+                                        tel: tr.tel,
+                                        total: tr.total,
+                                        status: tr.status,
+                                        datetime: serverTimestamp(),
+                                        userrate: 0,
+                                        sellerrate: tr.sellerrate
+                                    }).then(()=>{
+                                        alert("Successfully update status")
+                                        location.reload()
+                                    }).catch(e=>console.log(e))
+                                }
+                            })
+                            
+                        if (tr.status >= 3) trOneContainerDiv.appendChild(buttonsDiv)
                         const trOneHeading = document.createElement("h3")
                         trOneHeading.className = "item_review_user"
                         let status = tr.status == 0 ? "On Process" : tr.status == 1 ? "Confirmed" : tr.status == 2 ? "Shipping" : tr.status == 3 ? "Finished" : "Cancelled"
