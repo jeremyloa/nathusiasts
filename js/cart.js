@@ -203,7 +203,9 @@ if (purchaseBtn) {
                     tel: buy_tel.value,
                     total: Number(totalPrice+10000),
                     status: 0,
-                    datetime: serverTimestamp()
+                    datetime: serverTimestamp(),
+                    userrate: 0,
+                    sellerrate: 0
                 }).then((transactionDoc)=>{
                     getMasterCartArray().then((data)=>{
                         data.forEach((cart)=>{
