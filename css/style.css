@@ -803,6 +803,94 @@ footer{
     font-weight: normal;
 }
 
+.post_container{
+    background-color: white;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.card_post{
+    background-color: white; 
+    width: 97.5%; 
+    height: max-content; 
+    padding: 10pt; 
+    border-radius: 5pt;
+    border: solid black;
+    border-width: 1.5pt;
+    margin-bottom: 10pt;
+}
+
+.title_post{
+    padding: 0;
+    margin: 0;
+}
+
+.post_comment_container {
+    border: 1px solid #ccc;
+    padding: 3px;
+
+    margin: 5px 0 5px 0;
+    align-self: center;
+    width: 97%;
+}
+
+.post_input_comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 96.5% !important;
+}
+
+#item_input_review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* width: 70vw; */
+}
+
+
+.community-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.community-header, h1{
+    margin: 0;
+    margin-top: 15pt;
+    
+}
+
+.community-header, p{
+    margin-bottom: 15pt;
+    font-weight: bold;
+}
+
+.community-main{
+    background-image: url(./../assets/com-bg.jpg);
+    background-size: cover;
+    /* background-color:  #f8f7f3; */
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+.post_container{
+    border-radius: 5pt;
+    padding: 5pt;
+}
+
+#create_post{
+    margin-bottom: 0;
+}
+
 #buy_page_details h3, #buy_page_details h2{
     align-items: center;
     justify-content: center;
