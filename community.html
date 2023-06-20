@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../js/style.js"></script>
+        <script type="module" src="../js/firebase.js"></script>
+        <script type="module" src="../js/post.js"></script>
+        
+        <title id="title_owner">Nathusiasts - Buy or Sell Items</title>
+    </head>
+
+<header>
+    <nav>
+        <div id="mob-menu">
+            <a href="index.html">
+                <figure>
+                    <img src="../assets/Nathusiasts-b.png"/>
+                </figure>
+            </a>
+            <a href="javascript:void(0);" id="menu-icon" onclick="mobMenu()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <a href="marketplace.html" class="mob-hid">
+            <h4>MARKETPLACE</h4>
+        </a>
+        <a href="community.html" class="mob-hid">
+            <h4>COMMUNITY</h4>
+        </a>
+    </nav>
+
+    <nav>
+        <a href="about.html" class="mob-hid">
+            <h4>ABOUT US</h4>
+        </a>
+        <a href="contact.html" class="mob-hid">
+            <h4>CONTACT US</h4>
+        </a>
+        <a href="account.html" class="mob-hid acc_redir">
+            <h4>MY ACCOUNT</h4>
+        </a>
+        <a href="cart.html" class="mob-hid acc_redir">
+            <h4>MY CART</h4>
+        </a>
+    </nav>
+</header>
+
+<body>
+    <div class="community-main" >  
+
+        <div class="community-header">
+            <h1 >Our Community</h1>
+            <p>Share your experience, get to know the nature more.</p>
+        </div>
+        <div class="item-additional">
+            <section class="post_container" >
+                <h3 id="create_post">Create Post</h3>
+                <form id="item_input_review" class="item_input_comment">
+                    <textarea id="item_input_review_comment" class="item_input_review_comment" rows="3" placeholder="Write Your Thoughts Here" required></textarea>
+                    <button id="item_submit_review" type="submit" class="form-submit-inv btn-yellow">Post</button>
+                </form>
+                <ul id="item_reviews_list" class="item_reviews_list">
+                     <!-- <div class="card_post" style="background-color: white; width: 100%; height: max-content; padding: 10pt; border-radius: 5pt;">
+                        <div class="body_post"> -->
+
+                            <!-- <h5 class="user_post" style="margin: 0;">post userName</h5>
+                            <div class="desc_post" style="margin-bottom: 10pt; margin-top: 5pt;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic, itaque quibusdam iste unde nam amet id reprehenderit ea iusto accusamus quo tenetur qui, dolor ullam neque velit, maxime eos? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores doloribus rerum quibusdam repudiandae laboriosam voluptatibus suscipit molestiae, consequuntur natus placeat sint nostrum beatae. Perspiciatis sint cum natus vero, recusandae nulla.
+                            </div>
+                            <hr  class="line_post" style="border-color: rgb(168, 168, 168);"> -->
+                        <!-- </div>
+
+                        <div class="footer_post" style="display: flex; flex-direction: column; ">
+                            <p class="label_comment_post" style="font-size: x-small; margin:0;"> Comment as Username</p>
+                            <textarea class="textarea_comment_post" name="" id="" style="width: 100%;"></textarea>
+                            <button class="button_add_comment" style="align-self: flex-end;">Add Comment</button>
+                        </div>
+                    </div> -->
+
+                </ul>
+            </section>
+            <!-- <section id="item_related" class="item-add-item">
+                Related
+            </section> -->
+
+
+        </div>
+       
+    </div>
+
+</body>
+
+<footer>
+    Copyright © 2023 Nathusiasts.
+</footer>
+</html>
