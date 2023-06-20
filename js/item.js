@@ -49,8 +49,8 @@ if (item_id){
     const item_input_review = document.getElementById('item_input_review')
     if (item_input_review) {
         // if (false) item_input_review.style.display = 'none'
-        // if (!(await auth_middleware())) item_input_review.remove()
-        // else {
+        if (!(await auth_middleware())) item_input_review.remove()
+        else {
             item_input_review.style.display = 'flex'
             const item_submit_review = document.getElementById('item_submit_review')
             item_submit_review.addEventListener("click", (e)=>{
@@ -79,7 +79,7 @@ if (item_id){
                     .catch((e)=>console.log(e))
                 }
             })
-        // }
+        }
     }
 
     const reviewsList = document.querySelector("#item_reviews_list.item_reviews_list");
