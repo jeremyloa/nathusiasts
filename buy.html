@@ -10,7 +10,7 @@
     <script type="module" src="../js/firebase.js"></script>
     <script type="module" src="../js/user.js"></script>
     <script type="module" src="../js/products.js"></script>
-    <script type="module" src="../js/buy.js"></script>
+    <script type="module" src="../js/cart.js"></script>
     <script type="module" src="../js/index.js"></script>
     <title>Nathusiasts - Buy Product</title>
 </head>
@@ -35,12 +35,7 @@
     </nav>
 
     <nav>
-        <a href="about.html" class="mob-hid">
-            <h4>ABOUT US</h4>
-        </a>
-        <a href="contact.html" class="mob-hid">
-            <h4>CONTACT US</h4>
-        </a>
+        
         <a href="account.html" class="mob-hid acc_redir">
             <h4>MY ACCOUNT</h4>
         </a>
@@ -50,9 +45,29 @@
     </nav>
 </header>
 <body>
-    <section class="featured" id="bg-newproduct">
-        <h1>Buy Product</h1>
-        
+    <section class="featured" id="bg-buy">
+        <h1>Purchase Cart</h1>
+        <div id="purchase_cart_main">
+            <ul id="cart_main">
+            </ul>
+            <div>
+                <div id="buy_page_details">
+                    <h3>Delivery Fee: <h2 id="delivery_fee">Rp10000</h2></h3>
+                    <br>
+                    <h3>Total Payment: <h2 id="total_price">x</h2></h3>
+                    <br>
+                    <h3>Cash on Delivery only</h3>
+                </div>
+                <form class="form-main" id="buy_form">
+                    <br>
+                    <input class="form-field-res" type="name" name="name" placeholder="Full Name" required id="buy_name">
+                    <input class="form-field-res" type="email" name="email" placeholder="E-mail" required id="buy_email">
+                    <input class="form-field-res" type="tel" name="tel" placeholder="Telephone" required id="buy_tel">
+                    <textarea id="buy_address" class="item_input_review_comment" rows="3" placeholder="Address" required></textarea>
+                    <input id="purchaseBtn" type="submit" class="form-submit-inv btn-yellow" value="Purchase"/>
+                </form>
+            </div>
+        </div>
     </section>
 </body>
 <footer>
